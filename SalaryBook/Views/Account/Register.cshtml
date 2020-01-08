@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "Home Page";
+}
+@model RegisterViewModel;
+<div style="    width: 400px;
+        padding: 30px;
+        border: 1px solid #ffffff;
+        margin: 0 auto;
+        margin-top: 15%;
+        border-radius: 12px;
+        background-color: #ffffff;
+    ">
+    <h2 style="text-align:center">欢迎登陆</h2>
+    <form method="post" action="register">
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input type="text" class="form-control" asp-for="UserName">
+            <span asp-validation-for="UserName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input type="password" class="form-control" asp-for="Password">
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ComfirmPassword"></label>
+            <input type="password" class="form-control" asp-for="ComfirmPassword">
+            <span asp-validation-for="ComfirmPassword"></span>
+        </div>
+        @*<div class="form-group">
+            <label asp-for="Mobile"></label>
+            <input type="number" class="form-control" asp-for="Mobile">
+            <span asp-validation-for="Mobile"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BirthDay"></label>
+            <input type="date" class="form-control" asp-for="BirthDay">
+            <span asp-validation-for="BirthDay"></span>
+        </div>*@
+        <div asp-validation-summary="All" class="alert-warning"></div>
+        <button type="submit" class="btn btn-primary" style="width:100%">注册</button>
+        <div class="container" style="color:darkcyan;text-align:center;margin-top:20px">
+            &copy; 2020 - SalaryBook - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </form>
+</div>

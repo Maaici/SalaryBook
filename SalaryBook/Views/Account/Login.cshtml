@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "Home Page";
+}
+@model LoginViewModel;
+<div style="        width: 400px;
+        padding: 30px;
+        border: 1px solid #ffffff;
+        margin: 0 auto;
+        margin-top: 15%;
+        border-radius: 8px;
+        background-color: #ffffff;
+    ">
+    <h2 style="text-align:center;">欢迎登陆</h2>
+    <form method="post" action="Login">
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input type="text" class="form-control" asp-for="UserName" >
+            <span asp-validation-for="UserName" class="alert-danger"></span>
+            @*<small id="emailHelp" class="form-text text-muted">我们不会将您的邮箱泄露.</small>*@
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input type="password" class="form-control" asp-for="Password">
+            <span asp-validation-for="Password" class="alert-danger"></span>
+        </div>
+        <a style="float:right;margin-bottom:10px" asp-area="" asp-controller="Account" asp-action="Register">点我注册&nbsp;</a>
+        <div asp-validation-summary="All" class="alert-danger"></div>
+        <button type="submit" class="btn btn-primary" style="width:100%">登录</button>
+        <div class="container" style="color:darkcyan;text-align:center;margin-top:20px">
+            &copy; 2020 - SalaryBook - <a asp-area="" asp-controller="Home" asp-action="Privacy">Detail</a>
+        </div>
+    </form>
+</div>
