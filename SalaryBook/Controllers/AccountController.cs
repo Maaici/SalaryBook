@@ -54,19 +54,34 @@ namespace SalaryBook.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel register) {
             if (ModelState.IsValid) {
-                IdentityUser user = new IdentityUser {
-                    UserName = register.UserName
-                };
-                var result = await _userManager.CreateAsync(user, register.Password);
-                if (result.Succeeded)
+                if (register.Password != register.ComfirmPassword)
                 {
-                    return View("Login");
+                    ModelState.AddModelError("", "两次输入的密码不一致");
                 }
                 else {
-                    ModelState.AddModelError("", result.Errors.FirstOrDefault().Description);
+                    IdentityUser user = new IdentityUser
+                    {
+                        UserName = register.UserName,
+                        EmailConfirmed = true //否则账号登不上
+                    };
+                    var result = await _userManager.CreateAsync(user, register.Password);
+                    
+                    if (result.Succeeded)
+                    {
+                        return View("Login");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", result.Errors.FirstOrDefault().Description);
+                    }
                 }
             }
             return View(register);
+        }
+
+        public async Task<IActionResult> Logout() {
+            await _signInManager.SignOutAsync();
+            return View("Login");
         }
     }
 }

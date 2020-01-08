@@ -19,7 +19,6 @@ namespace SalaryBook
             _configuration = configuration;
         }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MyDbContext>(options =>
@@ -76,6 +75,8 @@ namespace SalaryBook
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -83,6 +84,9 @@ namespace SalaryBook
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default1",
+                    pattern: "identity/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
