@@ -4,7 +4,8 @@ namespace SalaryBook.Entities
 {
     public class SalaryType : BaseEntity
     {
-        public int TypeCode { get; set; }
+        [MaxLength(5)]
+        public string TypeCode { get; set; }
         [MaxLength(50)]
         public string TypeName { get; set; }
         [MaxLength(500)]

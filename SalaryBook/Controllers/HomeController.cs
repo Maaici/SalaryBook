@@ -6,7 +6,6 @@ using SalaryBook.Models;
 
 namespace SalaryBook.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

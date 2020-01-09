@@ -24,6 +24,8 @@ namespace SalaryBook
             services.AddDbContext<MyDbContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"))
             );
+
+            #region identity ≈‰÷√
             //IdentityDbContext
             services.AddDbContext<IdentityDbContext>(options =>
                  options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
@@ -32,9 +34,6 @@ namespace SalaryBook
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<IdentityDbContext>();
-
-            services.AddControllersWithViews()
-                    .AddRazorRuntimeCompilation();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -56,6 +55,11 @@ namespace SalaryBook
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;
             });
+
+            #endregion
+
+            services.AddControllersWithViews()
+                    .AddRazorRuntimeCompilation();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

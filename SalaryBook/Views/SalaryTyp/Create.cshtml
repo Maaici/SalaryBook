@@ -1,0 +1,71 @@
+﻿@model SalaryBook.Entities.SalaryType
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>SalaryType</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TypeCode" class="control-label"></label>
+                <input asp-for="TypeCode" class="form-control" />
+                <span asp-validation-for="TypeCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeName" class="control-label"></label>
+                <input asp-for="TypeName" class="form-control" />
+                <span asp-validation-for="TypeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeDec" class="control-label"></label>
+                <input asp-for="TypeDec" class="form-control" />
+                <span asp-validation-for="TypeDec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsDelete" class="control-label"></label>
+                <input asp-for="IsDelete" class="form-control" />
+                <span asp-validation-for="IsDelete" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remark" class="control-label"></label>
+                <input asp-for="Remark" class="form-control" />
+                <span asp-validation-for="Remark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddUser" class="control-label"></label>
+                <input asp-for="AddUser" class="form-control" />
+                <span asp-validation-for="AddUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddTime" class="control-label"></label>
+                <input asp-for="AddTime" class="form-control" />
+                <span asp-validation-for="AddTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EditUser" class="control-label"></label>
+                <input asp-for="EditUser" class="form-control" />
+                <span asp-validation-for="EditUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EditTime" class="control-label"></label>
+                <input asp-for="EditTime" class="form-control" />
+                <span asp-validation-for="EditTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
