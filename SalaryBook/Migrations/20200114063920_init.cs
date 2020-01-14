@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SalaryBook.Migrations.IdentityDb
+namespace SalaryBook.Migrations
 {
-    public partial class initidentity : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,11 +39,40 @@ namespace SalaryBook.Migrations.IdentityDb
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    RealName = table.Column<string>(maxLength: 50, nullable: true),
+                    Occupation = table.Column<string>(maxLength: 100, nullable: true),
+                    IsDelete = table.Column<int>(nullable: true),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
+                    AddUser = table.Column<string>(maxLength: 50, nullable: true),
+                    AddTime = table.Column<DateTime>(nullable: true),
+                    EditUser = table.Column<string>(maxLength: 50, nullable: true),
+                    EditTime = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "salaryTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelete = table.Column<int>(nullable: true),
+                    Remark = table.Column<string>(maxLength: 500, nullable: true),
+                    AddUser = table.Column<string>(maxLength: 50, nullable: true),
+                    AddTime = table.Column<DateTime>(nullable: true),
+                    EditUser = table.Column<string>(maxLength: 50, nullable: true),
+                    EditTime = table.Column<DateTime>(nullable: true),
+                    TypeCode = table.Column<string>(maxLength: 5, nullable: true),
+                    TypeName = table.Column<string>(maxLength: 50, nullable: true),
+                    TypeDec = table.Column<string>(maxLength: 500, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_salaryTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,8 +121,8 @@ namespace SalaryBook.Migrations.IdentityDb
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(nullable: false),
-                    ProviderKey = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -137,8 +166,8 @@ namespace SalaryBook.Migrations.IdentityDb
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -208,6 +237,9 @@ namespace SalaryBook.Migrations.IdentityDb
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "salaryTypes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

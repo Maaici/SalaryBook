@@ -2,15 +2,16 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SalaryBook.Entities;
 using SalaryBook.Models;
 
 namespace SalaryBook.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -59,7 +60,7 @@ namespace SalaryBook.Controllers
                     ModelState.AddModelError("", "两次输入的密码不一致");
                 }
                 else {
-                    IdentityUser user = new IdentityUser
+                    ApplicationUser user = new ApplicationUser
                     {
                         UserName = register.UserName,
                         EmailConfirmed = true //否则账号登不上

@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SalaryBook.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 
 namespace SalaryBook
@@ -27,13 +26,13 @@ namespace SalaryBook
 
             #region identity ≈‰÷√
             //IdentityDbContext
-            services.AddDbContext<IdentityDbContext>(options =>
-                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
-                 b => b.MigrationsAssembly("SalaryBook"))
-             );
+            //services.AddDbContext<IdentityDbContext>(options =>
+            //     options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
+            //     b => b.MigrationsAssembly("SalaryBook"))
+            // );
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<IdentityDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<MyDbContext>();
 
             services.Configure<IdentityOptions>(options =>
             {
